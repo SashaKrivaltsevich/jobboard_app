@@ -5,9 +5,6 @@ class Company(models.Model):
     name = models.CharField(unique=True, max_length=100)
     employees_number = models.PositiveIntegerField()
 
-    class Meta:
-        db_table = "companies"
-
 
 class Vacancy(models.Model):
     LEVELS = (
@@ -15,7 +12,7 @@ class Vacancy(models.Model):
     ("Middle", "Middle")
     )
 
-    level = models.CharField(choices=LEVELS)
+    level = models.CharField(choices=LEVELS, max_length=30)
     expirience = models.CharField(max_length=30)
     min_salary = models.PositiveIntegerField(null=True)
     max_salary = models.PositiveIntegerField(null=True)
