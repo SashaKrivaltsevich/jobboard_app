@@ -62,7 +62,7 @@ class CompanyStorage(BaseStorage):
 
 class VacancyStorage(BaseStorage):
     def __init__(self, company_storage: CompanyStorage) -> None:
-        self._vacancies: list[Company] = []   
+        self._vacancies: list[Vacancy] = []   
         self._company_storage = company_storage
 
     
@@ -76,5 +76,5 @@ class VacancyStorage(BaseStorage):
         self._vacancies.append(vacancy_to_add)
         company.vacancies_counter += 1
 
-    def get_all_companies(self) -> list[Company]:
+    def get_all_vacanciess(self) -> list[Vacancy]:
         return self._vacancies
