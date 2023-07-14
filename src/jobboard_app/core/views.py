@@ -44,7 +44,7 @@ def add_company_controller(request: HttpRequest) -> HttpResponse:
         form = AddCompanyForm()
         context = {"form": form}
         return render(request=request, template_name="add_company.html", context=context)
-    
+
     elif request.method == "POST":
         form = AddCompanyForm(data=request.POST)
         if form.is_valid():
