@@ -2,19 +2,12 @@
 {% block content %}
     <h1>Add Vacancy</h1>
     <form method="POST" action="{% url 'add-vacancy' %}">
-        <label for="name"> Position</label><br><br>
-        <input type="text" id="name" name="name"><br>
-        <label for="company_name"> Company</label><br><br>
-        <input type="number" id="company_name" name="company_name"><br>
-        <label for="level"> Level</label><br><br>
-        <input type="text" id="level" name="level"><br>
-        <label for="expirience"> Expirience</label><br><br>
-        <input type="text" id="expirience name="expirience><br>
-        <label for="min_salary"> Min Salary</label><br><br>
-        <input type="text" id="min_salary" name="min_salary"><br>
-        <label for="max_salary"> Max Salary</label><br><br>
-        <input type="text" id="max_salary" name="max_salary"><br>
-        
+        {% csrf_token %}
+        {{ for field in form }}
+            {{ field.errors }}
+            { field.label_tag} <br>
+            {{ field }}<br><br>
+        {{ endfor }}
         <input type="submit" id="submit"><br>
     </form>
 {% endblock %}
