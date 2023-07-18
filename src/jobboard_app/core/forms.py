@@ -1,4 +1,4 @@
-from core.validators import validate_swear_words_in_company_name
+from core.validators import validate_swear_words_in_company_name, ValidateMaxTagCount
 from django import forms
 
 
@@ -21,3 +21,4 @@ class AddVacancyForm(forms.Form):
     expirience = forms.CharField(label="Expirience", max_length=30, strip=True)
     min_salary = forms.IntegerField(label="Min Salary", min_value=0, required=False)
     max_salary = forms.IntegerField(label="Max Salary", min_value=0, required=False)
+    tags = forms.CharField(label="Tags", widget=forms.Textarea, validators=[ValidateMaxTagCount(max_count=5)])
