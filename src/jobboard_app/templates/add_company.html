@@ -2,10 +2,8 @@
 {% block content %}
     <h1>Add Company</h1>
     <form method="POST" action="{% url 'add-company' %}">
-        <label for="name"> Company Name</label><br><br>
-        <input type="text" id="name" name="name"><br>
-        <label for="employees"> Employees Number</label><br><br>
-        <input type="number" id="employees" name="employees_number"><br>
+        {% csrf_token %}
+        {{ form }}
         <input type="submit" id="submit"><br>
     </form>
 {% endblock %}

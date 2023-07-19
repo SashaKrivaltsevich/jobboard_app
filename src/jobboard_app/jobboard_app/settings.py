@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "django.forms",
 
     # internal
     "core",
@@ -56,6 +57,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "core.middleware.BlockURLMiddleware",
+    "core.middleware.TransferRandomMessageMiddleware",
 ]
 
 ROOT_URLCONF = 'jobboard_app.urls'
@@ -76,6 +79,8 @@ TEMPLATES = [
     },
 ]
 
+
+FORM_RENDERER = "jobboard_app.template_renders.DefaultFormRenderer"
 WSGI_APPLICATION = 'jobboard_app.wsgi.application'
 
 
@@ -84,8 +89,12 @@ WSGI_APPLICATION = 'jobboard_app.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        "NAME": os.environ["DB_NAME"],
+        "HOST": os.environ["DB_HOST"],
+        "PORT": os.environ["DB_PORT"],
+        "USER": os.environ["DB_USER"],
+        "PASSWORD": os.environ["DB_PASSWORD"],  
     }
 }
 

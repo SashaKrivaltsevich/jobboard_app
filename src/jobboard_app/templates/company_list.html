@@ -7,7 +7,7 @@
             <th>Employees</th>
             <th>Open Positions</th>
         </tr>
-        {% for company in companies %}
+        {% for company in company %}
             <tr>
                 <td><a href="{% url 'company' company.id %}">{{ company.name }}</a></td>
                 <td>{{ company.employees_number }}</td>

@@ -15,4 +15,9 @@
     <p>Salary: Undisclosed salary</p>
 {% endif %}
 
+<p>
+    {% for tag in tags %}
+        #{{tag.name}} 
+    {% endfor %}
+</p>
 {% endblock %}

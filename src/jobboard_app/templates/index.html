@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
+    <form method="GET" action="{% url 'index' %}">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" id="submit"><br>
+    </form>
     <h1>Vacancies list</h1>
     <table>
         <tr>
@@ -24,7 +29,6 @@
                 {% elif not vacancy.min_salary and not vacancy.max_salary %}
                     <td>Undisclosed salary</td>
                 {% endif %}
-
             </tr>
         {% endfor %}
     </table>
