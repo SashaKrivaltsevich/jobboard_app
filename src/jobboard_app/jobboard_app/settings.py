@@ -11,8 +11,12 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 import os
+import logging
+import logging.config
 from dotenv import load_dotenv
 from pathlib import Path
+
+from jobboard_app.logger_formatter import ContextFormatter
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -57,8 +61,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "core.middleware.BlockURLMiddleware",
-    "core.middleware.TransferRandomMessageMiddleware",
+    "core.presentation.middleware.BlockURLMiddleware",
+    "core.presentation.middleware.TransferRandomMessageMiddleware",
 ]
 
 ROOT_URLCONF = 'jobboard_app.urls'
@@ -66,7 +70,7 @@ ROOT_URLCONF = 'jobboard_app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, "templates")],
+        'DIRS': [os.path.join(BASE_DIR, "core", "presentation", "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -139,3 +143,47 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR.parents[4], "media", "jobboard")
+
+MEDIA_URL = "/media/"
+
+# Cknfigure logging 
+
+
+
+LOGGING = {
+    "version" : 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "console_formatter": {
+            "()": ContextFormatter,
+            "format": "{asctime} - {levelname} - {name} - {module}:{funcName}:{lineno}" " - {message}",
+            "style":"{"
+        }
+    },
+
+    "handlers": {
+        "console_handler": {
+            "class": "logging.StreamHandler",
+            "level": os.environ["LOG_LEVEL"],
+            "formatter": "console_formatter",
+        }
+    },
+    "loggers": {
+        "root": {
+            "level": os.environ["LOG_LEVEL"],
+            "handlers": ["console_handler"]
+        },
+        "django": {
+            "level": os.environ["LOG_LEVEL"],
+            "handlers": ["console_handler"]
+        },
+        "PIL": {
+            "level": "WARNING",
+            "handlers": ["console_handler"]
+        }
+    }
+}
+

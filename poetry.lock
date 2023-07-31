@@ -208,6 +208,18 @@ optional = false
 python-versions = ">=3.7"
 
 [[package]]
+name = "pillow"
+version = "10.0.0"
+description = "Python Imaging Library (Fork)"
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.extras]
+docs = ["furo", "olefile", "sphinx (>=2.4)", "sphinx-copybutton", "sphinx-inline-tabs", "sphinx-removed-in", "sphinxext-opengraph"]
+tests = ["check-manifest", "coverage", "defusedxml", "markdown2", "olefile", "packaging", "pyroma", "pytest", "pytest-cov", "pytest-timeout"]
+
+[[package]]
 name = "platformdirs"
 version = "3.8.1"
 description = "A small Python package for determining appropriate platform-specific dirs, e.g. a \"user data dir\"."
@@ -375,7 +387,7 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "3583407660f4650e1556edd4f18da38ca06f84da778a73906db3834eb8e5360c"
+content-hash = "126f64193ad09fc0d371d193ff49b132de7250f0a21adc31996bd20ca7d5c44d"
 
 [metadata.files]
 asgiref = []
@@ -397,6 +409,7 @@ lazy-object-proxy = []
 mccabe = []
 nodeenv = []
 pathspec = []
+pillow = []
 platformdirs = []
 pre-commit = []
 psycopg2-binary = []

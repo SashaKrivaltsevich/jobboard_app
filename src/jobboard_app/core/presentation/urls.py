@@ -1,12 +1,13 @@
 from django.urls import path
 
-from .views import (
+from core.presentation.views import (
     add_company_controller,
     add_vacancy_controller,
     company_list_controller,
     get_company_controller,
     get_vacancy_controller,
     index_controller,
+    registration_controller
 )
 
 urlpatterns = [
@@ -16,4 +17,5 @@ urlpatterns = [
     path("vacancy/add/", add_vacancy_controller, name="add-vacancy"),
     path("vacancy/<int:vacancy_id>/", get_vacancy_controller, name="vacancy"),
     path("company/<int:company_id>/", get_company_controller, name="company"),
+    path("signin/", registration_controller, name="registration")
 ]
